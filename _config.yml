@@ -15,8 +15,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://baseon2016.github.io/My-Blog
-root: /My-blog/
+url: https://baseon2016.github.io/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -90,4 +90,7 @@ theme_config: # Theme configuration. Include any custom theme settings under thi
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/baseon2016/My-Blog.git #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
+  branch: gh-pages #published
+  message: "发布更新" #leave this blank
