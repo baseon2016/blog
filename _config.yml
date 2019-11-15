@@ -19,6 +19,8 @@ url: https://baseon2016.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+pretty_urls: # Rewrite the permalink variables to pretty URLs
+pretty_urls.trailing_index: true # Trailing index.html, set to false to remove it
 
 # Directory
 source_dir: source
@@ -84,7 +86,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape # Theme name. false disables theming
+theme: hiero # Theme name. false disables theming
 theme_config: # Theme configuration. Include any custom theme settings under this key to override theme defaults.
 
 # Deployment
