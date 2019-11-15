@@ -3,18 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
-language: en
+title: 小龙虾栖息地
+subtitle: 自由民主进步
+description: 小龙虾一直在坑里，从未离开过
+keywords: 前端、js、vue
+author: Devin Sun
+language:
+  - zh-tw
+  - en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
-root: /
+url: https://baseon2016.github.io/My-Blog
+root: /My-blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -32,31 +34,33 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
-filename_case: 0
-render_drafts: false
-post_asset_folder: false
-relative_link: false
-future: true
+external_link:
+external_link.enable: true # Open external links in new tab
+external_link.field: site # Applies to the whole site or post only
+filename_case: 0 # Transform filenames to 1 lower case; 2 upper case
+render_drafts: false # Display drafts?
+post_asset_folder: false # Enable the Asset Folder?
+relative_link: false # Make links relative to the root folder?
+future: true # Display future posts?
 highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace:
-  
+  enable: true # Enable syntax highlight
+  line_number: true # Display line number
+  auto_detect: false # Enable auto-detection if no language is specified
+  tab_replace: "" # Replace tabs by n space(s); if the value is empty, tabs won’t be replaced
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
-category_map:
-tag_map:
+category_map: # Category slugs
+tag_map: # Tag slugs
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -70,10 +74,18 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
+# Examples:
+# pagination_dir: 'page'
+# http://yoursite.com/page/2
+
+# pagination_dir: 'awesome-page'
+# http://yoursite.com/awesome-page/2
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: landscape # Theme name. false disables theming
+theme_config: # Theme configuration. Include any custom theme settings under this key to override theme defaults.
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
