@@ -95,4 +95,3 @@ deploy:
   type: git
   repo: https://github.com/baseon2016/blog #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: gh-pages #published
-  message: "发布更新" #leave this blank
