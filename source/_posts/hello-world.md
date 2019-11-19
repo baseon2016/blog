@@ -1,38 +1,21 @@
 ---
-title: Hello World
+title: promise
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+## 深入理解一下 js 标准内置对象 promise
 
-### Create a new post
+> Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.
 
-``` bash
-$ hexo new "My New Post"
+### 1.创建 promise 语法
+
+```js
+new Promise( function(resolve, reject) {...} /* executor */  );
 ```
 
-More info: [Writing](https://hexo.io/docs/writing.html)
+<font size=2>**executor** 是带有 resolve 和 reject 两个参数的函数 。Promise 构造函数执行时立即调用 executor 函数， resolve 和 reject 两个函数作为参数传递给 executor。resolve 和 reject 函数被调用时，分别将 promise 的状态改为 fulfilled（完成）或 rejected（失败）。executor 内部通常会执行异步操作，异步操作执行完毕，要么调用 resolve 函数来将 promise 状态改成 fulfilled，要么调用 reject 函数将 promise 的状态改为 rejected。如果在 executor 函数中抛出一个错误，那么该 promise 状态为 rejected。executor 函数的返回值被忽略</font>
 
-### Run server
+##### Promise 状态:
 
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/deployment.html)
+- pending: 初始状态，既不是成功，也不是失败状态。
+- fulfilled: 意味着操作成功完成。
+- rejected: 意味着操作失败
