@@ -2,11 +2,11 @@
 title: promise
 ---
 
-## 深入理解一下 js 标准内置对象 promise
+## js 标准内置对象 promise
 
 > Promise 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.
 
-### 1.创建 promise 语法
+##### 创建 promise 语法
 
 ```js
 new Promise( function(resolve, reject) {...} /* executor */  );
@@ -19,3 +19,16 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 - pending: 初始状态，既不是成功，也不是失败状态。
 - fulfilled: 意味着操作成功完成。
 - rejected: 意味着操作失败
+
+> 注意： 如果一个 promise 对象处在 fulfilled 或 rejected 状态而不是 pending 状态，那么它也可以被称为 settled 状态。你可能也会听到一个术语 resolved ，它表示 promise 对象处于 settled 状态。
+
+##### 书写实例
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  // 这里一般执行异步操作
+  reslove(someValue); //fulfilled
+  //？或
+  reject("failure reason"); //rejected
+});
+```
