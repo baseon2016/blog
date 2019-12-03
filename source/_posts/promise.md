@@ -1,5 +1,7 @@
 ---
 title: promise
+date: 2019-11-15 12:25:37
+tags:
 ---
 
 ## js 标准内置对象 promise
