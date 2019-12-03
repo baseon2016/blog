@@ -169,6 +169,73 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-文字竖向排列水平和垂直居中"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/blog/2019/12/03/文字竖向排列水平和垂直居中/">文字竖向排列水平和垂直居中</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/blog/2019/12/03/文字竖向排列水平和垂直居中/" class="article-date">
+	  <time datetime="2019-12-03T05:09:36.000Z" itemprop="datePublished">十二月 3, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="html-中文字竖向排列和水平垂直居中"><a href="#html-中文字竖向排列和水平垂直居中" class="headerlink" title="html 中文字竖向排列和水平垂直居中"></a>html 中文字竖向排列和水平垂直居中</h2><ol>
+<li><p>CSS writing-mode 属性<br>writing-mode 属性定义了文本在水平或垂直方向上如何排布。</p>
+<blockquote>
+<p>writing-mode: horizontal-tb | vertical-rl | vertical-lr | sideways-rl | sideways-lr</p>
+</blockquote>
+<ul>
+<li>horizontal-tb：水平方向自上而下的书写方式。即 left-right-top-bottom</li>
+<li>vertical-rl：垂直方向自右而左的书写方式。即 top-bottom-right-left</li>
+<li>vertical-lr：垂直方向内内容从上到下，水平方向从左到右</li>
+<li>sideways-rl：内容垂直方向从上到下排列</li>
+<li>sideways-lr：内容垂直方向从下到上排列</li>
+</ul>
+</li>
+<li><p>盒子内文字垂直书写模式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">77px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">224px</span>;</span><br><span class="line">  <span class="attribute">writing-mode</span>: vertical-rl; <span class="comment">/*从左向右 从右向左是 writing-mode: vertical-rl;*/</span></span><br><span class="line">  <span class="comment">/* writing-mode: tb-rl; IE浏览器的从左向右 从右向左是 writing-mode: tb-rl； */</span></span><br><span class="line">  <span class="comment">/* text-align: center; */</span></span><br><span class="line">  <span class="comment">/* line-height: 77px; */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通常的文字垂直水平居中适用于垂直书写模式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">77px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">224px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">user-select</span>: none;</span><br><span class="line">  <span class="attribute">writing-mode</span>: vertical-lr; <span class="comment">/*从左向右 从右向左是 writing-mode: vertical-rl;*/</span></span><br><span class="line">  <span class="comment">/* writing-mode: tb-lr; IE浏览器的从左向右 从右向左是 writing-mode: tb-rl； */</span></span><br><span class="line">  <span class="attribute">text-align</span>: center; <span class="comment">/*垂直书写模式文字水平居中表现为垂直居中*/</span></span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">77px</span>; <span class="comment">/*垂直书写模式文字行高设为盒子宽度一致，即可文字水平居中*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>df 布局文字垂直水平居中适用于垂直书写模式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">77px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">224px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">user-select</span>: none;</span><br><span class="line">  <span class="attribute">writing-mode</span>: vertical-lr; <span class="comment">/*从左向右 从右向左是 writing-mode: vertical-rl;*/</span></span><br><span class="line">  <span class="comment">/* writing-mode: tb-lr; IE浏览器的从左向右 从右向左是 writing-mode: tb-rl； */</span></span><br><span class="line">  <span class="attribute">display</span>: flex; <span class="comment">/*df布局*/</span></span><br><span class="line">  <span class="attribute">-webkit-display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center; <span class="comment">/*垂直书写模式下,水平居中*/</span></span><br><span class="line">  <span class="attribute">justify-content</span>: center; <span class="comment">/*垂直书写模式下,垂直居中*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="_post-获取客户端ip地址（RTCPeerConnection）"  class="article article-type-_post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -539,6 +606,18 @@ return processDataInRes(v):出错时返回值为Promise而不是返回null。<br
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/blog/2019/12/03/文字竖向排列水平和垂直居中/">文字竖向排列水平和垂直居中</a></h6>
+              <span>十二月 3, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/blog/2019/11/22/获取客户端ip地址（RTCPeerConnection）/">js获取客户端ip地址（RTCPeerConnection）</a></h6>
               <span>十一月 22, 2019</span>
             </div>
@@ -599,7 +678,7 @@ return processDataInRes(v):出错时返回值为Promise而不是返回null。<br
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
