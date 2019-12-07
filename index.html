@@ -169,6 +169,202 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-百度统计api"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/blog/2019/12/07/百度统计api/">百度统计api</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/blog/2019/12/07/百度统计api/" class="article-date">
+	  <time datetime="2019-12-07T07:29:59.000Z" itemprop="datePublished">十二月 7, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="如何给网站加入百度统计-api"><a href="#如何给网站加入百度统计-api" class="headerlink" title="如何给网站加入百度统计 api"></a>如何给网站加入百度统计 api</h2><p><strong>功能目标：页面访问量和下载次数统计</strong></p>
+<h4 id="一、通过百度账号创建百度统计"><a href="#一、通过百度账号创建百度统计" class="headerlink" title="一、通过百度账号创建百度统计"></a>一、通过百度账号创建百度统计</h4><ul>
+<li>新增网站</li>
+<li>代码安装，添加到了 index.html 模板<br><img src="http://static.vue-js.com/FhhIomJVE30CBg8BXiPICXm88r5n" alt="image.png"><br></li>
+<li>在 main.js 中，切换路由时的统计<br><img src="http://static.vue-js.com/FgNjZ7QbxCQi_DuhGyOZ-xTQ4Uno" alt="image.png"><br></li>
+<li>至此，账号中已经开始有报告的数据<br><img src="http://static.vue-js.com/Frmsc-jdiiUPWUaVhSD4I2CpOnSn" alt="image.png"><br></li>
+<li>数据导出服务</li>
+</ul>
+<ol>
+<li><p>百度开发者中心控制台，账号创建工程，记录 API Key 和 Secret Key</p>
+</li>
+<li><p>手动获取 accessToken 和 refresh Token</p>
+<ul>
+<li>输入网址如下获取，authorization code<br> <code>http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&amp;client_id={API KEY}&amp;redirect_uri=oob&amp;scope=basic&amp;display=popup</code><br>
+![image.png](http://static.vue-js.com/FkucwulczyUQArJKeVYSdDZu4bPe)
+<br></li>
+<li>通过 authorization code 获取 token,输入网址如下<br><code>http://openapi.baidu.com/oauth/2.0/token?grant_type=authorization_code&amp;code={CODE}&amp;client_id={CLIENT_ID}&amp;client_secret={CLIENT_SECRET}&amp;redirect_uri=oob</code><br>
+![image.png](http://static.vue-js.com/FjO3exhXOek_2y2IlOaL-hWNWI1X)
+<br>
+</li>
+</ul>
+</li>
+<li><p>accessToken 和 refreshToken 交给服务端存储，在 accessToken 有效期到期前，刷新存储的凭证</p>
+</li>
+<li><p>调用百度统计 api（这里写的固定的 token，因为功能还在测试）<br><img src="http://static.vue-js.com/FtDSNSUawVRkiNY_cMJVtepwHTG2" alt="image.png"></p>
+<br></li>
+<li><p>报错如下<br><img src="http://static.vue-js.com/FnImJNqNiywgfIeg-y3LEAqW2e2f" alt="image.png"></p>
+<br>
+产生了 CORS 跨域问题，在开发模式下，我使用代理 devServer 之后是可以正常请求成功的
+![image.png](http://static.vue-js.com/Fktj2E0c6NqPlY1kY1DxJM0l5yLz)
+<br>
+但是项目总归要上线的，npm run build 之后，还是会报错
+</li>
+</ol>
+<ul>
+<li>转化分析数据<br>在开发模式，使用代理请求的数据，metrics 添加了 *<em>trans count *</em>,但是返回的数据总数 sum 里依然没有事件转化的数据。（事件转化已经在按钮的 click 事件里面添加）<br>请求返回数据如下：<br><img src="http://static.vue-js.com/Fo0O2pMhKQuAtybVZOdi90oLL0x6" alt="image.png"><br>
+百度统计网站可以看到的转化次数如下
+![image.png](http://static.vue-js.com/FueyXatKMsvqP-2Fkm5-TcJ_SIgC)
+<br>
+**<font color=red> 未解决问题：上面主要遇到的就是数据导出时，请求百度统计 api 时遇到跨域 cors 问题和请求数据的返回值中没有 trans_count </font>**
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-点击下载和点击打开展示"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/blog/2019/12/07/点击下载和点击打开展示/">点击下载和点击打开展示</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/blog/2019/12/07/点击下载和点击打开展示/" class="article-date">
+	  <time datetime="2019-12-07T07:12:23.000Z" itemprop="datePublished">十二月 7, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="点击下载和点击打开展示"><a href="#点击下载和点击打开展示" class="headerlink" title="点击下载和点击打开展示"></a>点击下载和点击打开展示</h2><h4 id="一、点击下载"><a href="#一、点击下载" class="headerlink" title="一、点击下载"></a>一、点击下载</h4><blockquote>
+<p>目前使用的最简便的方式，通过 a 标签设置点击下载</p>
+</blockquote>
+<p>代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- downloadHref 下载链接 downloadName下载时提示文件名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn-download"</span> <span class="attr">:href</span>=<span class="string">"downloadHref"</span> <span class="attr">:download</span>=<span class="string">"downloadName"</span>&gt;</span> <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="二、点击打开展示"><a href="#二、点击打开展示" class="headerlink" title="二、点击打开展示"></a>二、点击打开展示</h4><ul>
+<li>文件类型为 pdf 时, <code>ifram</code> 标签可以直接解析展示<br>代码如下</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- src 即文件路径，可以是本地路径也可以是网上资源路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">:src</span>=<span class="string">"src"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span> <span class="attr">style</span>=<span class="string">"width: 100%; height: 500px"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>文件类型为 docx 时，调用网络服务，表现并不好，需要新开标签页（暂未解决）</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-具名插槽父级子级的变量使用"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/blog/2019/12/05/具名插槽父级子级的变量使用/">slot拓展组件复用以及插槽父级子级的变量传递</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/blog/2019/12/05/具名插槽父级子级的变量使用/" class="article-date">
+	  <time datetime="2019-12-05T06:45:03.000Z" itemprop="datePublished">十二月 5, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="slot-拓展组件复用以及插槽父级子级的变量传递"><a href="#slot-拓展组件复用以及插槽父级子级的变量传递" class="headerlink" title="slot 拓展组件复用以及插槽父级子级的变量传递"></a>slot 拓展组件复用以及插槽父级子级的变量传递</h2><p>组件复用时经常涉及标签的显示或隐藏，当然此过程可以在调用时传递参数设置<code>display:block</code>和<code>display:none</code>，但是结构变化比较复杂时会产生很多不必要的参数。而如果使用 slot 插槽，组件的自由度更高，应用更简便。</p>
+<p>代码示例：</p>
+<ul>
+<li><p>子组件内，添加 slot 插槽 default 或 具名插槽</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 组件IconList --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"list-title"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item-name"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"item-title"</span> <span class="attr">:style</span>=<span class="string">"&#123; width: maxWidth &#125;"</span>&gt;</span></span><br><span class="line">      &#123;&#123; item.Title &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 具名插槽 name 绑定slotProps :item :maxWidth 添加类名样式 class --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span></span></span><br><span class="line"><span class="tag">      <span class="attr">name</span>=<span class="string">"subTitle"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:item</span>=<span class="string">"item"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"sub-title"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:maxWidth</span>=<span class="string">"maxWidth"</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"fileInfo"</span> <span class="attr">:item</span>=<span class="string">"item"</span> <span class="attr">class</span>=<span class="string">"item-info"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父组件内，调用子组件并传递 slot</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IconList</span> <span class="attr">:listData</span>=<span class="string">"downloadFiles"</span> <span class="attr">imgSrc</span>=<span class="string">"txt"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- v-slot 指定插槽名和绑定属性  template内可以自定义各种结构标签，自由度更高--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:fileInfo</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item-info df"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 调用子组件中slot绑定属性的参数 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>标签:&#123;&#123; slotProps.item.Tags &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span></span></span><br><span class="line"><span class="tag">        &gt;</span>&#123;&#123; slotProps.item.DownCount ? slotProps.item.DownCount : 0 &#125;&#125;</span><br><span class="line">        下载<span class="tag">&lt;/<span class="name">span</span></span></span><br><span class="line"><span class="tag">      &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">IconList</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-文字竖向排列水平和垂直居中"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -606,6 +802,42 @@ return processDataInRes(v):出错时返回值为Promise而不是返回null。<br
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/blog/2019/12/07/百度统计api/">百度统计api</a></h6>
+              <span>十二月 7, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/blog/2019/12/07/点击下载和点击打开展示/">点击下载和点击打开展示</a></h6>
+              <span>十二月 7, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/blog/2019/12/05/具名插槽父级子级的变量使用/">slot拓展组件复用以及插槽父级子级的变量传递</a></h6>
+              <span>十二月 5, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/blog/2019/12/03/文字竖向排列水平和垂直居中/">文字竖向排列水平和垂直居中</a></h6>
               <span>十二月 3, 2019</span>
             </div>
@@ -636,30 +868,6 @@ return processDataInRes(v):出错时返回值为Promise而不是返回null。<br
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/blog/2019/11/15/async&promise/">async&amp;promise</a></h6>
-              <span>十一月 15, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/blog/2019/11/15/promise/">promise</a></h6>
-              <span>十一月 15, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -678,7 +886,7 @@ return processDataInRes(v):出错时返回值为Promise而不是返回null。<br
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">十二月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
